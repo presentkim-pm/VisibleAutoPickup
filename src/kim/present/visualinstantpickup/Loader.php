@@ -22,15 +22,33 @@
  *
  * @noinspection PhpIllegalPsrClassPathInspection
  * @noinspection SpellCheckingInspection
+ * @noinspection PhpDocSignatureInspection
  */
 
 declare(strict_types=1);
 
 namespace kim\present\visualinstantpickup;
 
+use kim\present\visualinstantpickup\task\PickupTask;
+use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 
-class Loader extends PluginBase{
+class Loader extends PluginBase implements Listener{
     protected function onEnable() : void{
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);
+    }
+
+    /** @priority HIGHEST */
+    public function onBlockBreakEvent(BlockBreakEvent $event) : void{
+        $player = $event->getPlayer();
+        if(!$player->hasFiniteResources())
+            return;
+
+        $blockPos = $event->getBlock()->getPos();
+        foreach($event->getDrops() as $drop){
+            $this->getScheduler()->scheduleDelayedTask(new PickupTask($player, $drop, $blockPos), 10);
+        }
+        $event->setDrops([]);
     }
 }
