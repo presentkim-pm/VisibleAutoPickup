@@ -34,9 +34,22 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 
-class Loader extends PluginBase implements Listener{
+use function is_dir;
+use function rmdir;
+use function scandir;
+
+final class Loader extends PluginBase implements Listener{
     protected function onEnable() : void{
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
+
+        /**
+         * This is a plugin that does not use data folders.
+         * Delete the unnecessary data folder of this plugin for users.
+         */
+        $dataFolder = $this->getDataFolder();
+        if(is_dir($dataFolder) && empty(scandir($dataFolder))){
+            rmdir($dataFolder);
+        }
     }
 
     /** @priority HIGHEST */
