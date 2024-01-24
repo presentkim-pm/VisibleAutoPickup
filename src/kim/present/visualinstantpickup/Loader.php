@@ -32,15 +32,8 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 
-use function count;
-use function is_dir;
-use function rmdir;
-use function scandir;
-
 final class Loader extends PluginBase implements Listener{
     protected function onEnable() : void{
-        $this->getServer()->getPluginManager()->registerEvents($this, $this);
-
         /**
          * This is a plugin that does not use data folders.
          * Delete the unnecessary data folder of this plugin for users.
@@ -49,17 +42,20 @@ final class Loader extends PluginBase implements Listener{
         if(is_dir($dataFolder) && count(scandir($dataFolder)) <= 2){
             rmdir($dataFolder);
         }
+
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
     /** @priority HIGHEST */
     public function onBlockBreakEvent(BlockBreakEvent $event) : void{
         $player = $event->getPlayer();
-        if(!$player->hasFiniteResources())
+        if(!$player->hasFiniteResources()){
             return;
+        }
 
         $blockPos = $event->getBlock()->getPosition();
-        foreach($event->getDrops() as $drop){
-            $this->getScheduler()->scheduleDelayedTask(new PickupTask($player, $drop, $blockPos), 10);
+        foreach($event->getDrops() as $dropItem){
+            $this->getScheduler()->scheduleDelayedTask(new PickupTask($player, $dropItem, $blockPos), 10);
         }
         $event->setDrops([]);
     }

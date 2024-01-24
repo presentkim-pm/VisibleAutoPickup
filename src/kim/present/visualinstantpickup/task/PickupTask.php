@@ -40,51 +40,40 @@ use pocketmine\scheduler\Task;
 use pocketmine\world\Position;
 
 final class PickupTask extends Task{
-    private Player $player;
-    private Item $item;
-    private Position $pos;
-    private int $entityRuntimeId;
+    private int $itemEntityId;
 
-    /** @var Player[] */
-    private array $hasSpawned = [];
+    public function __construct(
+        private Player $player,
+        private Item $item,
+        private Position $pos
+    ){
+        $this->itemEntityId = Entity::nextRuntimeId();
 
-    public function __construct(Player $player, Item $item, Position $pos){
-        $this->player = $player;
-        $this->item = $item;
-        $this->pos = $pos;
-        $this->entityRuntimeId = Entity::nextRuntimeId();
-
-        $pk = AddItemActorPacket::create(
-            $this->entityRuntimeId,
-            $this->entityRuntimeId,
+        $pos->getWorld()->broadcastPacketToViewers($pos, AddItemActorPacket::create(
+            $this->itemEntityId,
+            $this->itemEntityId,
             ItemStackWrapper::legacy(TypeConverter::getInstance()->coreItemStackToNet($item)),
             $pos->add(0.5, 0.5, 0.5),
             new Vector3(lcg_value() * 0.2 - 0.1, 0.2, lcg_value() * 0.2 - 0.1),
             [],
-            false);
-        $chunkX = $pos->getFloorX() >> 4;
-        $chunkZ = $pos->getFloorZ() >> 4;
-        foreach($pos->getWorld()->getChunkPlayers($chunkX, $chunkZ) as $viewer){
-            if(!$viewer->hasReceivedChunk($chunkX, $chunkZ))
-                continue;
-
-            $this->hasSpawned[spl_object_id($viewer)] = $viewer;
-            $viewer->getNetworkSession()->sendDataPacket($pk);
-        }
+            false));
     }
 
     public function onRun() : void{
+        $world = $this->pos->getWorld();
         if(
             $this->player->isClosed() ||
             !$this->player->isConnected() ||
             !empty($this->player->getInventory()->addItem($this->item))
         ){
-            $this->pos->getWorld()->dropItem($this->pos, $this->item);
+            $world->dropItem($this->pos, $this->item);
         }
 
-        foreach($this->hasSpawned as $viewer){
-            $viewer->getNetworkSession()->sendDataPacket(TakeItemActorPacket::create($this->player->getId(), $this->entityRuntimeId));
-            $viewer->getNetworkSession()->sendDataPacket(RemoveActorPacket::create($this->entityRuntimeId));
+        foreach([
+            TakeItemActorPacket::create($this->player->getId(), $this->itemEntityId),
+            RemoveActorPacket::create($this->itemEntityId)
+        ] as $pk){
+            $world->broadcastPacketToViewers($this->pos, $pk);
         }
     }
 }
