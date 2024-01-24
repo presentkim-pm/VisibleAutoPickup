@@ -1,8 +1,8 @@
 ---
-name: VisualInstantPickup
-main: kim\present\visualinstantpickup\Main
+name: AutoPickup
+main: kim\present\autopickup\Main
 version: 1.0.0
 api: [ 5.0.0 ]
 author: PresentKim
-description: Pickup item without actually spawn entity
+description: Automatically picks up items before others pick them up!
 ...

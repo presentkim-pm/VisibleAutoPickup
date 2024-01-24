@@ -25,7 +25,7 @@
 
 declare(strict_types=1);
 
-namespace kim\present\visualinstantpickup;
+namespace kim\present\autopickup;
 
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\Listener;
