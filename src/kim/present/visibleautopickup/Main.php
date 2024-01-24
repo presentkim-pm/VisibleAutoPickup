@@ -27,9 +27,9 @@ declare(strict_types=1);
 
 namespace kim\present\visibleautopickup;
 
-use Closure;
-use pocketmine\entity\object\ExperienceOrb;
 use pocketmine\event\block\BlockBreakEvent;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\event\entity\EntityDeathEvent;
 use pocketmine\event\Listener;
 use pocketmine\item\Item;
 use pocketmine\math\Vector3;
@@ -60,8 +60,30 @@ final class Main extends PluginBase implements Listener{
         }
 
         $world = $player->getWorld();
-        $blockPos = $event->getBlock()->getPosition();
-        $dropVec = $blockPos->add(0.5, 0, 0.5);
+        $dropVec = $event->getBlock()->getPosition()->add(0.5, 0, 0.5);
+
+        $this->dropItems($player, $world, $dropVec, $event->getDrops());
+        $event->setDrops([]);
+
+        $this->dropXpOrbs($player, $world, $dropVec, $event->getXpDropAmount() ?: 60);
+        $event->setXpDropAmount(0);
+    }
+
+    /** @priority HIGHEST */
+    public function onEntityDeathEvent(EntityDeathEvent $event) : void{
+        $entity = $event->getEntity();
+        $lastDamageEvent = $entity->getLastDamageCause();
+        if(!($lastDamageEvent instanceof EntityDamageByEntityEvent)){
+            return;
+        }
+
+        $player = $lastDamageEvent->getDamager();
+        if(!($player instanceof Player)){
+            return;
+        }
+
+        $world = $player->getWorld();
+        $dropVec = $entity->getPosition()->asVector3();
 
         $this->dropItems($player, $world, $dropVec, $event->getDrops());
         $event->setDrops([]);
