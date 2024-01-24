@@ -13,8 +13,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <img src="https://raw.githubusercontent.com/presentkim-pm/PickUpFirst/main/assets/icon.png" alt="Logo" width="80" height="80">
-  <h3>PickUpFirst</h3>
+  <img src="https://raw.githubusercontent.com/presentkim-pm/VisibleAutoPickup/main/assets/icon.png" alt="Logo" width="80" height="80">
+  <h3>VisibleAutoPickup</h3>
   <p align="center">
     An plugin that automatically picks up items before others pick them up!
 
@@ -62,18 +62,18 @@ This plugin officially only works with [`Pocketmine-MP`](https://github.com/pmmp
 Distributed under the **LGPL 3.0**. See [LICENSE][license-url] for more information
 
 
-[poggit-ci-badge]: https://poggit.pmmp.io/ci.shield/presentkim-pm/PickUpFirst/PickUpFirst?style=for-the-badge
-[poggit-version-badge]: https://poggit.pmmp.io/shield.api/PickUpFirst?style=for-the-badge
-[poggit-downloads-badge]: https://poggit.pmmp.io/shield.dl.total/PickUpFirst?style=for-the-badge
-[stars-badge]: https://img.shields.io/github/stars/presentkim-pm/PickUpFirst.svg?style=for-the-badge
-[license-badge]: https://img.shields.io/github/license/presentkim-pm/PickUpFirst.svg?style=for-the-badge
+[poggit-ci-badge]: https://poggit.pmmp.io/ci.shield/presentkim-pm/VisibleAutoPickup/VisibleAutoPickup?style=for-the-badge
+[poggit-version-badge]: https://poggit.pmmp.io/shield.api/VisibleAutoPickup?style=for-the-badge
+[poggit-downloads-badge]: https://poggit.pmmp.io/shield.dl.total/VisibleAutoPickup?style=for-the-badge
+[stars-badge]: https://img.shields.io/github/stars/presentkim-pm/VisibleAutoPickup.svg?style=for-the-badge
+[license-badge]: https://img.shields.io/github/license/presentkim-pm/VisibleAutoPickup.svg?style=for-the-badge
 
-[poggit-ci-url]: https://poggit.pmmp.io/ci/presentkim-pm/PickUpFirst/PickUpFirst
-[poggit-release-url]: https://poggit.pmmp.io/p/PickUpFirst
-[stars-url]: https://github.com/presentkim-pm/PickUpFirst/stargazers
-[releases-url]: https://github.com/presentkim-pm/PickUpFirst/releases
-[issues-url]: https://github.com/presentkim-pm/PickUpFirst/issues
-[license-url]: https://github.com/presentkim-pm/PickUpFirst/blob/main/LICENSE
+[poggit-ci-url]: https://poggit.pmmp.io/ci/presentkim-pm/VisibleAutoPickup/VisibleAutoPickup
+[poggit-release-url]: https://poggit.pmmp.io/p/VisibleAutoPickup
+[stars-url]: https://github.com/presentkim-pm/VisibleAutoPickup/stargazers
+[releases-url]: https://github.com/presentkim-pm/VisibleAutoPickup/releases
+[issues-url]: https://github.com/presentkim-pm/VisibleAutoPickup/issues
+[license-url]: https://github.com/presentkim-pm/VisibleAutoPickup/blob/main/LICENSE
 
-[project-icon]: https://raw.githubusercontent.com/presentkim-pm/PickUpFirst/main/assets/icon.png
-[project-preview]: https://raw.githubusercontent.com/presentkim-pm/PickUpFirst/main/assets/preview.gif
+[project-icon]: https://raw.githubusercontent.com/presentkim-pm/VisibleAutoPickup/main/assets/icon.png
+[project-preview]: https://raw.githubusercontent.com/presentkim-pm/VisibleAutoPickup/main/assets/preview.gif

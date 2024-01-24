@@ -1,6 +1,6 @@
 ---
-name: PickUpFirst
-main: kim\present\pickupfirst\Main
+name: VisibleAutoPickup
+main: kim\present\visibleautopickup\Main
 version: 1.0.0
 api: [ 5.0.0 ]
 author: PresentKim

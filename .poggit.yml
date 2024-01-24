@@ -2,7 +2,7 @@
 branches:
     - main
 projects:
-    pickupfirst:
+    VisibleAutoPickup:
         projectId: 13509
         path: ""
         icon: "assets/icon.png"
