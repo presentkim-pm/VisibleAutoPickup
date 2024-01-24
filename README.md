@@ -35,6 +35,7 @@ If you want to prevent the theft of others' items in mines or the wilderness, bu
 
 :heavy_check_mark: Owner player automatically pick up items at after 0.5 sec(`10 ticks`).
 :heavy_check_mark: If the owner player cannot pick it up, it can picked up by others after 1 sec(`20 ticks`).
+:heavy_check_mark: Owner player has a 2 sec (`40 ticks`) priority for XP orbs
 
 
 -----

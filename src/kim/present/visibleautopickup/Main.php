@@ -27,10 +27,16 @@ declare(strict_types=1);
 
 namespace kim\present\visibleautopickup;
 
+use Closure;
+use pocketmine\entity\object\ExperienceOrb;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\Listener;
+use pocketmine\item\Item;
+use pocketmine\math\Vector3;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\ClosureTask;
+use pocketmine\world\World;
 
 final class Main extends PluginBase implements Listener{
     protected function onEnable() : void{
@@ -53,24 +59,50 @@ final class Main extends PluginBase implements Listener{
             return;
         }
 
+        $world = $player->getWorld();
         $blockPos = $event->getBlock()->getPosition();
-        foreach($event->getDrops() as $dropItem){
-            $itemEntity = $blockPos->getWorld()->dropItem($blockPos, $dropItem, null, 20);
+        $dropVec = $blockPos->add(0.5, 0, 0.5);
+
+        $this->dropItems($player, $world, $dropVec, $event->getDrops());
+        $event->setDrops([]);
+
+        $this->dropXpOrbs($player, $world, $dropVec, $event->getXpDropAmount() ?: 60);
+        $event->setXpDropAmount(0);
+    }
+
+    /** @param Item[] $items */
+    private function dropItems(Player $owner, World $world, Vector3 $dropVec, array $items) : void{
+        foreach($items as $dropItem){
+            $itemEntity = $world->dropItem($dropVec, $dropItem, null, 20);
             if($itemEntity === null){
                 continue;
             }
 
             $this->getScheduler()->scheduleDelayedTask(new ClosureTask(
-                function() use ($player, $itemEntity) : void{
+                function() use ($owner, $itemEntity) : void{
                     if($itemEntity->isClosed()){
                         return;
                     }
 
                     $itemEntity->setPickupDelay(0);
-                    $itemEntity->onCollideWithPlayer($player);
+                    $itemEntity->onCollideWithPlayer($owner);
                 }
             ), 10);
         }
-        $event->setDrops([]);
+    }
+
+    private function dropXpOrbs(Player $owner, World $world, Vector3 $dropVec, int $xp) : void{
+        foreach($world->dropExperience($dropVec, $xp) as $xpEntity){
+            $xpEntity->setTargetPlayer($owner);
+            $this->getScheduler()->scheduleDelayedTask(new ClosureTask(
+                function() use ($owner, $xpEntity) : void{
+                    if($xpEntity->isClosed()){
+                        return;
+                    }
+
+                    $xpEntity->setTargetPlayer($owner);
+                }
+            ), 20);
+        }
     }
 }
