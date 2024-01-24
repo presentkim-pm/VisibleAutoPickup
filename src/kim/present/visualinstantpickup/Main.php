@@ -27,10 +27,10 @@ declare(strict_types=1);
 
 namespace kim\present\visualinstantpickup;
 
-use kim\present\visualinstantpickup\task\PickupTask;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
+use pocketmine\scheduler\ClosureTask;
 
 final class Main extends PluginBase implements Listener{
     protected function onEnable() : void{
@@ -55,7 +55,21 @@ final class Main extends PluginBase implements Listener{
 
         $blockPos = $event->getBlock()->getPosition();
         foreach($event->getDrops() as $dropItem){
-            $this->getScheduler()->scheduleDelayedTask(new PickupTask($player, $dropItem, $blockPos), 10);
+            $itemEntity = $blockPos->getWorld()->dropItem($blockPos, $dropItem, null, 20);
+            if($itemEntity === null){
+                continue;
+            }
+
+            $this->getScheduler()->scheduleDelayedTask(new ClosureTask(
+                function() use ($player, $itemEntity) : void{
+                    if($itemEntity->isClosed()){
+                        return;
+                    }
+
+                    $itemEntity->setPickupDelay(0);
+                    $itemEntity->onCollideWithPlayer($player);
+                }
+            ), 10);
         }
         $event->setDrops([]);
     }
