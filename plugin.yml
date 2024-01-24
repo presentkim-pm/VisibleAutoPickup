@@ -1,6 +1,6 @@
 ---
 name: VisualInstantPickup
-main: kim\present\visualinstantpickup\Loader
+main: kim\present\visualinstantpickup\Main
 version: 1.0.0
 api: [ 5.0.0 ]
 author: PresentKim

@@ -32,7 +32,7 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 
-final class Loader extends PluginBase implements Listener{
+final class Main extends PluginBase implements Listener{
     protected function onEnable() : void{
         /**
          * This is a plugin that does not use data folders.
