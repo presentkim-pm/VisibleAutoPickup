@@ -1,0 +1,8 @@
+---
+branches:
+    - main
+projects:
+    AutoPickup:
+        path: ""
+        icon: "assets/icon.png"
+...
