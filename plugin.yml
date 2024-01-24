@@ -4,5 +4,5 @@ main: kim\present\visibleautopickup\Main
 version: 1.1.0
 api: [ 5.0.0 ]
 author: PresentKim
-description: Automatically picks up items before others pick them up!
+description: Automatically picks up items and xp orbs before others pick them up!
 ...

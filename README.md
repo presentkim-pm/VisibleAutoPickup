@@ -28,13 +28,12 @@
 ## About The Project
 ![Project Preview][project-preview]  
 
-In the event of a block being destroyed, it is appropriate for the player who broke it to have priority for the item.
-If you want to prevent the theft of others' items in mines or the wilderness, but do not wish to prohibit looting altogether, consider allowing players to pick up items first without banning the act of looting itself!  
+It is appropriate for the player who destroy a block or kill entity to have priority for the dropped item.
+If applying this plugin ensures that the owner player takes priority in pick up items and experience orbs.  
 
 > Primarily useful to showcase the pickup action to other players, it's even better than instant-pickup plugins  
   
 :heavy_check_mark: Owner player automatically pick up items at after 0.5 sec(`10 ticks`).  
-:heavy_check_mark: If the owner player cannot pick it up, it can picked up by others after 1 sec(`20 ticks`).  
 :heavy_check_mark: Owner player has a 2 sec (`40 ticks`) priority for XP orbs  
 :heavy_check_mark: Also works when killing entities.  
 
