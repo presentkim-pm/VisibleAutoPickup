@@ -59,7 +59,7 @@ final class Loader extends PluginBase implements Listener{
         if(!$player->hasFiniteResources())
             return;
 
-        $blockPos = $event->getBlock()->getPos();
+        $blockPos = $event->getBlock()->getPosition();
         foreach($event->getDrops() as $drop){
             $this->getScheduler()->scheduleDelayedTask(new PickupTask($player, $drop, $blockPos), 10);
         }

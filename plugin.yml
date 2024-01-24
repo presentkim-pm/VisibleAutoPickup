@@ -2,7 +2,7 @@
 name: VisualInstantPickup
 main: kim\present\visualinstantpickup\Loader
 version: 1.0.0
-api: [ 4.0.0 ]
+api: [ 5.0.0 ]
 author: PresentKim
 description: Pickup item without actually spawn entity
 ...
