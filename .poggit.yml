@@ -2,7 +2,8 @@
 branches:
     - main
 projects:
-    AutoPickup:
+    pickupfirst:
+        projectId: 13509
         path: ""
         icon: "assets/icon.png"
 ...
