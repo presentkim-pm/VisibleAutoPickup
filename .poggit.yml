@@ -3,7 +3,6 @@ branches:
     - main
 projects:
     VisibleAutoPickup:
-        projectId: 13509
         path: ""
         icon: "assets/icon.png"
 ...
