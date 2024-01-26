@@ -65,7 +65,7 @@ final class Main extends PluginBase implements Listener{
         $this->dropItems($player, $world, $dropVec, $event->getDrops());
         $event->setDrops([]);
 
-        $this->dropXpOrbs($player, $world, $dropVec, $event->getXpDropAmount() ?: 60);
+        $this->dropXpOrbs($player, $world, $dropVec, $event->getXpDropAmount());
         $event->setXpDropAmount(0);
     }
 
