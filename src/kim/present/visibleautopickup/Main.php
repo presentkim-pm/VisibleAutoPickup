@@ -27,6 +27,7 @@ declare(strict_types=1);
 
 namespace kim\present\visibleautopickup;
 
+use kim\present\removeplugindatafolder\PluginDataFolderEraser;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\entity\EntityDeathEvent;
@@ -40,14 +41,7 @@ use pocketmine\world\World;
 
 final class Main extends PluginBase implements Listener{
     protected function onEnable() : void{
-        /**
-         * This is a plugin that does not use data folders.
-         * Delete the unnecessary data folder of this plugin for users.
-         */
-        $dataFolder = $this->getDataFolder();
-        if(is_dir($dataFolder) && count(scandir($dataFolder)) <= 2){
-            rmdir($dataFolder);
-        }
+        PluginDataFolderEraser::erase($this);
 
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }

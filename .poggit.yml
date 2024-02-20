@@ -5,4 +5,7 @@ projects:
     VisibleAutoPickup:
         path: ""
         icon: "assets/icon.png"
+    libs:
+        - src: presentkim-pm/remove-plugin-data-folder/remove-plugin-data-folder
+          version: ^1.1.0
 ...
