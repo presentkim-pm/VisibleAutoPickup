@@ -96,7 +96,7 @@ final class Main extends PluginBase implements Listener{
 
             $this->getScheduler()->scheduleDelayedTask(new ClosureTask(
                 function() use ($owner, $itemEntity) : void{
-                    if($itemEntity->isClosed()){
+                    if($itemEntity->isClosed() || $owner->isClosed()){
                         return;
                     }
 
