@@ -11,10 +11,10 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <img src="https://raw.githubusercontent.com/presentkim-pm/VisibleAutoPickup/main/assets/icon.png" alt="Logo" width="80" height="80">
+  <img src="https://raw.githubusercontent.com/presentkim-pm/visibleautopickup/main/assets/icon.png" alt="Logo" width="80" height="80">
   <h3>VisibleAutoPickup</h3>
   <p align="center">
-    An plugin that automatically picks up items before others pick them up!
+    A plugin that automatically picks up items and XP orbs before others pick them up! (axolotl-pm/PocketMine-MP 5.x)
 
 [Contact to me][author-discord] · [Report a bug][issues-url] · [Request a feature][issues-url]
 
@@ -24,93 +24,64 @@
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+### Overview
+
+It is appropriate for the player who destroys a block or kills an entity to have priority for the dropped item.
+This plugin ensures that the owner player takes priority in picking up items and experience orbs.
 
 ![Project Preview][project-preview]
 
-It is appropriate for the player who destroy a block or kill entity to have priority for the dropped item.
-If applying this plugin ensures that the owner player takes priority in pick up items and experience orbs.
-
 > Primarily useful to showcase the pickup action to other players, it's even better than instant-pickup plugins
 
-:heavy_check_mark: Owner player automatically pick up items at after 0.5 sec(`10 ticks`).  
-:heavy_check_mark: Owner player has a 2 sec (`40 ticks`) priority for XP orbs  
-:heavy_check_mark: Also works when killing entities.
+- Owner player automatically picks up items after 0.5 sec (`10 ticks`).
+- Owner player has a 1 sec (`20 ticks`) priority for XP orbs.
+- Also works when killing entities.
+- Does nothing in creative mode (players without finite resources).
+- No commands, permissions or configuration.
 
-##
+---
 
------
+### Installation & Requirements
 
-## Target software:
+- **Server**
+  - [axolotl-pm/PocketMine-MP](https://github.com/axolotl-pm/PocketMine-MP) `5.51` or higher (`plugin.yml` `api: [5.51.0]`),
+    which uses BedrockProtocol 64 (Bedrock `1.26.60`).
+  - PHP `8.4` or higher.
+- **Installation**
+  - Download `VisibleAutoPickup.phar` from [GitHub Releases][releases-url] and place it into your server's `plugins` directory.
+  - Restart the server; the plugin will load automatically according to `plugin.yml`.
+- **Old versions**
+  - The version for the original [pmmp/PocketMine-MP](https://github.com/pmmp/PocketMine-MP) `5.x` (up to `5.44`,
+    Poggit releases) is kept on the [`legacy/pmmp-5.44`](https://github.com/presentkim-pm/visibleautopickup/tree/legacy/pmmp-5.44) branch.
+- **Development**
+  - `composer install` then `composer test` runs the PHPUnit tests.
 
-This plugin officially only works with [`Pocketmine-MP`](https://github.com/pmmp/PocketMine-MP/).
+---
 
-##
-
------
-
-## Downloads
-
-### Download from [Github Releases][releases-url]
-
-[![Github Downloads][release-badge]][releases-url]
-
-###
-
-### Download from [Poggit Releases][poggit-release-url]
-
-[![Poggit Downloads][poggit-downloads-badge]][poggit-release-url]
-
-##
-
------
-
-## Installation
-
-1) Download plugin `.phar` releases
-2) Move downloaded `.phar` file to server's **/plugins/** folder
-3) Restart the server
-
-##
-
------
-
-## License
+### License
 
 Distributed under the **LGPL 3.0**. See [LICENSE][license-url] for more information
-
-##
 
 -----
 
 [author-discord]: https://discordapp.com/users/345772340279508993
 
-[poggit-ci-badge]: https://poggit.pmmp.io/ci.shield/presentkim-pm/VisibleAutoPickup/VisibleAutoPickup?style=for-the-badge
+[version-badge]: https://img.shields.io/github/v/release/presentkim-pm/visibleautopickup?display_name=tag&style=for-the-badge&label=VERSION
 
-[poggit-version-badge]: https://poggit.pmmp.io/shield.api/VisibleAutoPickup?style=for-the-badge
+[release-badge]: https://img.shields.io/github/downloads/presentkim-pm/visibleautopickup/total?style=for-the-badge&label=GITHUB%20
 
-[poggit-downloads-badge]: https://poggit.pmmp.io/shield.dl.total/VisibleAutoPickup?style=for-the-badge
+[stars-badge]: https://img.shields.io/github/stars/presentkim-pm/visibleautopickup.svg?style=for-the-badge
 
-[version-badge]: https://img.shields.io/github/v/release/presentkim-pm/VisibleAutoPickup?display_name=tag&style=for-the-badge&label=VERSION
+[license-badge]: https://img.shields.io/github/license/presentkim-pm/visibleautopickup.svg?style=for-the-badge
 
-[release-badge]: https://img.shields.io/github/downloads/presentkim-pm/VisibleAutoPickup/total?style=for-the-badge&label=GITHUB%20
+[stars-url]: https://github.com/presentkim-pm/visibleautopickup/stargazers
 
-[stars-badge]: https://img.shields.io/github/stars/presentkim-pm/VisibleAutoPickup.svg?style=for-the-badge
+[releases-url]: https://github.com/presentkim-pm/visibleautopickup/releases
 
-[license-badge]: https://img.shields.io/github/license/presentkim-pm/VisibleAutoPickup.svg?style=for-the-badge
+[issues-url]: https://github.com/presentkim-pm/visibleautopickup/issues
 
-[poggit-ci-url]: https://poggit.pmmp.io/ci/presentkim-pm/VisibleAutoPickup/VisibleAutoPickup
+[license-url]: https://github.com/presentkim-pm/visibleautopickup/blob/main/LICENSE
 
-[poggit-release-url]: https://poggit.pmmp.io/p/VisibleAutoPickup
+[project-icon]: https://raw.githubusercontent.com/presentkim-pm/visibleautopickup/main/assets/icon.png
 
-[stars-url]: https://github.com/presentkim-pm/VisibleAutoPickup/stargazers
-
-[releases-url]: https://github.com/presentkim-pm/VisibleAutoPickup/releases
-
-[issues-url]: https://github.com/presentkim-pm/VisibleAutoPickup/issues
-
-[license-url]: https://github.com/presentkim-pm/VisibleAutoPickup/blob/main/LICENSE
-
-[project-icon]: https://raw.githubusercontent.com/presentkim-pm/VisibleAutoPickup/main/assets/icon.png
-
-[project-preview]: https://raw.githubusercontent.com/presentkim-pm/VisibleAutoPickup/main/assets/preview.gif
+[project-preview]: https://raw.githubusercontent.com/presentkim-pm/visibleautopickup/main/assets/preview.gif
