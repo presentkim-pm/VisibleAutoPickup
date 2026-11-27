@@ -113,7 +113,7 @@ final class Main extends PluginBase implements Listener{
             $xpEntity->setTargetPlayer($owner);
             $this->getScheduler()->scheduleDelayedTask(new ClosureTask(
                 function() use ($owner, $xpEntity) : void{
-                    if($xpEntity->isClosed()){
+                    if($xpEntity->isClosed() || $owner->isClosed()){
                         return;
                     }
 
